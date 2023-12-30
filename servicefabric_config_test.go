@@ -5,10 +5,10 @@ import (
 	"testing"
 
 	sf "github.com/jjcollinge/servicefabric"
+	"github.com/pteich/traefik/provider/label"
+	"github.com/pteich/traefik/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/traefik/traefik/provider/label"
-	"github.com/traefik/traefik/types"
 )
 
 // TestServicesPresentInConfig tests that the basic services provide by SF

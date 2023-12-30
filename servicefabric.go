@@ -1,22 +1,23 @@
 package servicefabric
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"net/http"
 	"strings"
 	"time"
 
-	"github.com/cenk/backoff"
+	"github.com/cenkalti/backoff/v4"
 	"github.com/containous/flaeg"
 	appinsights "github.com/jjcollinge/logrus-appinsights"
 	sf "github.com/jjcollinge/servicefabric"
-	"github.com/traefik/traefik/job"
-	"github.com/traefik/traefik/log"
-	"github.com/traefik/traefik/provider"
-	"github.com/traefik/traefik/provider/label"
-	"github.com/traefik/traefik/safe"
-	"github.com/traefik/traefik/types"
+	"github.com/pteich/traefik/job"
+	"github.com/pteich/traefik/log"
+	"github.com/pteich/traefik/provider"
+	"github.com/pteich/traefik/provider/label"
+	"github.com/pteich/traefik/safe"
+	"github.com/pteich/traefik/types"
 )
 
 var _ provider.Provider = (*Provider)(nil)
@@ -43,7 +44,7 @@ type Provider struct {
 }
 
 // Init the provider.
-func (p *Provider) Init(constraints types.Constraints) error {
+func (p *Provider) Init(ctx context.Context, constraints types.Constraints) error {
 	err := p.BaseProvider.Init(constraints)
 	if err != nil {
 		return err
@@ -81,7 +82,7 @@ func (p *Provider) Init(constraints types.Constraints) error {
 
 // Provide allows the ServiceFabric provider to provide configurations to traefik
 // using the given configuration channel.
-func (p *Provider) Provide(configurationChan chan<- types.ConfigMessage, pool *safe.Pool) error {
+func (p *Provider) Provide(ctx context.Context, configurationChan chan<- types.ConfigMessage, pool *safe.Pool) error {
 	return p.updateConfig(configurationChan, pool, time.Duration(p.RefreshSeconds))
 }
 

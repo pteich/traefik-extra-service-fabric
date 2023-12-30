@@ -6,10 +6,10 @@ import (
 	"text/template"
 
 	sf "github.com/jjcollinge/servicefabric"
-	"github.com/traefik/traefik/log"
-	"github.com/traefik/traefik/provider"
-	"github.com/traefik/traefik/provider/label"
-	"github.com/traefik/traefik/types"
+	"github.com/pteich/traefik/log"
+	"github.com/pteich/traefik/provider"
+	"github.com/pteich/traefik/provider/label"
+	"github.com/pteich/traefik/types"
 )
 
 func (p *Provider) buildConfiguration(services []ServiceItemExtended) (*types.Configuration, error) {

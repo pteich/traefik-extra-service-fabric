@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
+	appinsights "github.com/GuderianE/logrus-appinsights"
 	"github.com/cenkalti/backoff/v4"
 	"github.com/containous/flaeg"
-	appinsights "github.com/jjcollinge/logrus-appinsights"
 	sf "github.com/jjcollinge/servicefabric"
 	"github.com/pteich/traefik/job"
 	"github.com/pteich/traefik/log"
